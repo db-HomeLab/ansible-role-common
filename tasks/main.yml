@@ -1,0 +1,19 @@
+---
+- name: Import distribution vars
+  ansible.builtin.include_vars: "{{lookup('ansible.builtin.first_found', params)}}"
+  vars:
+    params:
+      files:
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+        - default.yml
+      paths:
+        - 'vars'
+
+
+- name: Install common packages
+  become: true
+  "ansible.builtin.{{ pkg_mgr }}":
+    name: "{{ item }}"
+    state: installed
+    update_cache: true
