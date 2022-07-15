@@ -1,6 +1,9 @@
 ---
+pkg_mgr:
+
 packages:
   - sudo
   - smartmontools
   - lm-sensors
   - vim
+  - bpytop
