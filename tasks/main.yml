@@ -29,6 +29,7 @@
 
 - block:
   - name: Edit sshd_config PermitRootLogin
+    become: true
     lineinfile:
       path: /etc/ssh/sshd_config
       regex: ^(# *)?PermitRootLogin
