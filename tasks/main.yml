@@ -42,13 +42,33 @@
   ansible.builtin.lineinfile:
     path: /etc/sudoers
     state: absent
-    regexp: '^%'
+    regexp: '^(?!%wheel)%.*'
 
 - name: Ensure wheel group in sudoers config
   ansible.builtin.lineinfile:
     path: /etc/sudoers
     state: present
+    regexp: '^%wheel'
     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+
+- name: Create certs file
+  ansible.builtin.file:
+    path: /etc/openldap/certs/
+    state: directory
+    mode: '0600'
+    owner: root
+    group: root
+    recurse: true
+
+- name: Copy cert CA
+  ansible.builtin.lineinfile:
+    path: /etc/openldap/certs/ca.pem
+    line: "{{ sssd_ca_cert }}}"
+    create: true
+    state: present
+    mode: '0600'
+    owner: root
+    group: root
 
 - name: Copy sssd related configs
   ansible.builtin.copy:

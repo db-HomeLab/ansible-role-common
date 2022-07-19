@@ -1,5 +1,6 @@
 ---
 pkg_mgr:
+sssd_ca_cert:
 
 packages:
   - sudo
