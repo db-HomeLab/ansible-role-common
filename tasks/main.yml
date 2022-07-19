@@ -63,7 +63,7 @@
 - name: Copy cert CA
   ansible.builtin.lineinfile:
     path: /etc/openldap/certs/ca.pem
-    line: "{{ sssd_ca_cert }}}"
+    line: "{{ sssd_ca_cert }}"
     create: true
     state: present
     mode: '0600'
