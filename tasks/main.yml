@@ -49,3 +49,16 @@
     path: /etc/sudoers
     state: present
     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+
+- name: Copy sssd related configs
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/{{ item.file }}"
+    dest: "{{ item.path }}/{{ item.file }}"
+    mode: '0600'
+    owner: root
+    group: root
+  loop:
+    - {'file': 'sssd.conf', 'path': '/etc/sssd/'}
+    - {'file': 'nsswitch.conf', 'path': '/etc/'}
+  notify:
+    - Restart sssd

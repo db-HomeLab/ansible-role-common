@@ -7,6 +7,7 @@ packages:
   - lm-sensors
   - vim
   - bpytop
+  - sssd
 
 public_keys:
   - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDhym+a0/PcEOEtFeHOoNVDSyvWf7TsmctI6PCq720HBlHnpC5ILaxVDjmvZlXBr6WAyHqIkrLSBy+AEe7BkWydfM0rMnecKzVo6H1DQA/3thhgoZhABzzfb9djFf0Ch5DVeGy3scOqd6NTuIhBBf/d52UNi10IUD0GcPWamCi9reL0FmI07Mf/gSG/uTEbeYeHGykH30F/dhUsT6jEORCcyTVB+UFHBTDWGChXWXLCmyBkVICknIcK/bsWy3vYkeQvK2FJnpLqSMJyoKdoVoxsvWeIGwdPeG0yMC2vip8ih2VwlNhHfPbdi/wt10aqYxGQo3cvFmfKWiyvtBBDhqj+L3hW0BYof1b+h3l9dZgxqIu9jo+wC+u4Kwo0pOPAee76L8dY/+3JXI21wu1hzUdVasWkN8JzWEwyA5VC0PzEPrKXMYKanmzULonKGp37A2x59dfTcfcnBCWj3jHsKrkBQtj5ZX+r9f8/wdiT5VluXk3aJlE/WSyNGbNAh+e2Dr8= edebeste@ArchBanshee"
