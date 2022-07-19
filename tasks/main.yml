@@ -27,11 +27,17 @@
     key: "{{ item }}"
   loop: "{{ public_keys }}"
 
-- block:
-  - name: Edit sshd_config PermitRootLogin
-    become: true
-    lineinfile:
-      path: /etc/ssh/sshd_config
-      regex: ^(# *)?PermitRootLogin
-      line: PermitRootLogin prohibit-password
+- name: Edit sshd_config
+  become: true
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: "{{ item.regex }}"
+    line: "{{ item.line }}"
+  loop:
+    - {'regex': '^(# *)?PermitRootLogin', 'line': 'PermitRootLogin prohibit-password'}
+    - {'regex': '^(# *)?PubkeyAuthentication', 'line': 'PubkeyAuthentication yes'}
+    - {'regex': '^(# *)?ChallengeResponseAuthentication', 'line': 'ChallengeResponseAuthentication no'}
+    - {'regex': '^(# *)?UsePAM', 'line': 'UsePAM yes'}
+  notify:
+    - "Restart sshd"
 
