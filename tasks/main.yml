@@ -76,11 +76,11 @@
   ansible.builtin.copy:
     src: "{{ role_path }}/files/{{ item.file }}"
     dest: "{{ item.path }}/{{ item.file }}"
-    mode: '0600'
+    mode: "{{ item.perm }}"
     owner: root
     group: root
   loop:
-    - {'file': 'sssd.conf', 'path': '/etc/sssd/'}
-    - {'file': 'nsswitch.conf', 'path': '/etc/'}
+    - {'file': 'sssd.conf', 'path': '/etc/sssd/', 'perm': '0600'}
+    - {'file': 'nsswitch.conf', 'path': '/etc/', 'perm': '0644'}
   notify:
     - Restart sssd
