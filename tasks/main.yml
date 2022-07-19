@@ -18,3 +18,19 @@
     update_cache: true
   #with_items: "{{ packages }}"
   when: "ansible_os_family == 'Debian'"
+
+- name: Add public keys to hosts
+  become: true
+  ansible.posix.authorized_key:
+    user: root
+    state: present
+    key: "{{ item }}"
+  loop: "{{ public_keys }}"
+
+- block:
+  - name: Edit sshd_config PermitRootLogin
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regex: ^(# *)?PermitRootLogin
+      line: PermitRootLogin prohibit-password
+
