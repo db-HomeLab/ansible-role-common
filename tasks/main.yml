@@ -26,7 +26,7 @@
   loop: "{{ public_keys }}"
 
 - name: Edit sshd_config
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
     regex: "{{ item.regex }}"
     line: "{{ item.line }}"
@@ -38,3 +38,14 @@
   notify:
     - "Restart sshd"
 
+- name: Remove existing groups from sudoers config
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: absent
+    regexp: '^%'
+
+- name: Ensure wheel group in sudoers config
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
