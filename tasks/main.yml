@@ -84,3 +84,10 @@
     - {'file': 'nsswitch.conf', 'path': '/etc/', 'perm': '0644'}
   notify:
     - Restart sssd
+
+- name: Insert a new rule before an existing rule
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/common-session
+    insertbefore: BOF
+    line: "session    required    pam_mkhomedir.so skel=/etc/skel/ umask=0022"
+  when: "ansible_os_family == 'Debian'"
