@@ -61,10 +61,9 @@
     recurse: true
 
 - name: Copy cert CA
-  ansible.builtin.blockinfile:
+  ansible.builtin.copy:
     dest: /etc/openldap/certs/ca.pem
-    block: "{{ sssd_ca_cert }}"
-    create: true
+    content: "{{ sssd_ca_cert }}"
     mode: '0600'
     owner: root
     group: root
